@@ -47,6 +47,12 @@ void main() {
         expect(info.buildSignature, isEmpty);
         expect(info.packageName, 'package_info_example');
         expect(info.version, '1.2.3');
+      } else if (Platform.isWindows) {
+        expect(info.appName, 'package_info_example');
+        expect(info.buildNumber, '4');
+        expect(info.buildSignature, isEmpty);
+        expect(info.packageName, 'package_info_example');
+        expect(info.version, '1.2.3');
       } else {
         throw (UnsupportedError('platform not supported'));
       }
@@ -84,6 +90,11 @@ void main() {
         expect(find.text('1.2.3'), findsOneWidget);
         expect(find.text('Not set'), findsOneWidget);
       } else if (Platform.isLinux) {
+        expect(find.text('package_info_example'), findsNWidgets(2));
+        expect(find.text('1.2.3'), findsOneWidget);
+        expect(find.text('4'), findsOneWidget);
+        expect(find.text('Not set'), findsOneWidget);
+      } else if (Platform.isWindows) {
         expect(find.text('package_info_example'), findsNWidgets(2));
         expect(find.text('1.2.3'), findsOneWidget);
         expect(find.text('4'), findsOneWidget);
